@@ -25,7 +25,6 @@ public:
         else
         {
             balance = 0;
-            accountNumber = accountNo;
             cout << "Initial balance cant be negative, Setting to 0" << endl;
         }
     }
@@ -60,6 +59,7 @@ public:
         return balance;
     }
 
+    // A const member function guarantees it does not modify the object's state and allows the function to be called on const objects.
     string getAccountNumber() const
     {
         return "XXXX" + accountNumber.substr(accountNumber.length() - 6);
