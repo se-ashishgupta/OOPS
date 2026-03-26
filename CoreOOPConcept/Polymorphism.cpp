@@ -12,6 +12,9 @@ using namespace std;
 // Virtual functions allow a base class reference to call derived class methods at runtime, enabling polymorphism.
 // Virtual functions make runtime polymorphism possible.
 
+// ✅ Function Overriding(using virtual)
+//     Child class provides its own implementation of parent function.class
+
 class Shape
 {
 public:
@@ -45,7 +48,7 @@ public:
 
     void display() const override
     {
-        cout << "This isa circle with radius: " << radius << endl;
+        cout << "This is a circle with radius: " << radius << endl;
     }
 };
 
@@ -80,6 +83,7 @@ int main()
 
     Circle myCircle(5);
     Rectangle myRect(2, 5);
+    myCircle.display();
 
     printArea(myCircle);
     printArea(myRect);
