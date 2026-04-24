@@ -12,6 +12,7 @@ public:
     // using Intialization list
     Rectangle(double w, double h) : width(w), height(h), MAX_WIDTH(100)
     {
+        cout << "Consturcture called" << endl;
         // Constructor Body
         if (width > MAX_WIDTH)
         {
@@ -22,5 +23,7 @@ public:
 
 int main()
 {
+    Rectangle rec(10, 10);
+
     return 0;
 }
