@@ -41,7 +41,7 @@ public:
     }
 
     // Overload << operator for output stream
-    // Why Friend? real and imag are private and this fucntion is outside the class
+    // Why Friend? real and imag are private and this fucntion is outside the class so we give access
     friend ostream &operator<<(ostream &os, const Complex &c)
     {
         os << c.real;
