@@ -23,18 +23,25 @@ public:
             data = new char[length];
             strcpy(data, str);
         }
+
+        cout << "Parameterized constructor called" << endl;
     }
-    // Copy Constructor
-    MyString(const MyString &other)
+    // Move Constructor
+    MyString(MyString &&other) noexcept
     {
         length = other.length;
-        data = new char[length];
-        strcpy(data, other.data);
-        cout << "Copy constructor called" << endl;
+        data = other.data;
+
+        // leave other in a valid state
+        other.data = new char[1];
+        other.data[0] = '\0';
+        other.length = 0;
+
+        cout << "Move constructor called" << endl;
     }
 
     // Copy Assignment operator
-    MyString &operator=(const MyString &other)
+    MyString &operator=(MyString &&other) noexcept
     {
         if (this != &other) // Self assignment check
         {
@@ -43,11 +50,15 @@ public:
 
             // Copy resource
             length = other.length;
-            data = new char[length];
-            strcpy(data, other.data);
+            data = other.data;
+
+            // leave other in a valid state
+            other.data = new char[1];
+            other.data[0] = '\0';
+            other.length = 0;
         }
 
-        cout << "Copy assignment constructor called" << endl;
+        cout << "Move assignment constructor called" << endl;
         return *this;
     }
 
@@ -67,9 +78,9 @@ public:
 int main()
 {
     MyString s1("hello");
-    MyString s2 = s1; // Copy Constructor
+    MyString s2 = std::move(s1); // Move Constructor called
     MyString s3;
-    s3 = s1; // Copy assignment opertor called
+    s3 = std::move(s1); // Move assignment opertor called
 
     return 0;
 }
